@@ -1,0 +1,13 @@
+$("#sy").change(function () {
+  <?php
+			mysql_select_db("osa_organization", $con);
+			$result = mysql_query("SELECT * FROM category");
+			
+			while($row = mysql_fetch_array($result))
+			{ ?>  
+              <option value="<?php echo $row['cat_id']?>">
+				<?php echo $row['category_name']?>
+				</option>
+		<?php } ?>
+})
+.trigger('change');

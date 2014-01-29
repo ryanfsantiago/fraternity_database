@@ -1,0 +1,149 @@
+@charset "utf-8";
+.resulta
+{
+text-align: center;
+}
+
+#header{
+height:90px;
+background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(30,87,153,1) 48%,rgba(30,87,153,0.7) 68%,rgba(30,87,153,0.61) 72%,rgba(125,185,232,0) 100%); /* W3C */
+top:0px;
+right:0px;
+left:0px;
+width:100%;
+position:absolute;
+
+
+}
+
+#banner{
+
+width:650px;
+margin-left:25px;
+}
+
+#allcontent{
+font-family:calibri;
+margin-top:100px;
+width:1200px;
+margin-left:auto;
+margin-right:auto;
+clear:both;
+
+}
+
+#footer{
+margin-top:150px;
+box-shadow: 0px 1px 5px #999999;
+clear:both;
+text-align:center;
+}
+
+#content{
+margin-top:100px;
+clear:both;
+}
+
+#add{
+box-shadow: 0px 1px 5px #999999;
+margin-left:100px;
+margin-top:50px;
+margin-right:100px;
+}
+
+ /* Vertical Navigation */
+#nav { 
+float:right;	
+list-style-type: none;
+margin-top:5%;
+z-index:-99;	
+margin-right:25px;
+}
+
+/* CSS for each Parent Item */
+#nav li {float: left; position: relative;}
+
+#nav li a
+{
+	float: left;
+	display: block;
+	padding: 4px;
+	text-decoration: none;
+	color: #666;
+	text-transform: uppercase;
+	margin-right: 0px;
+}
+
+/* 
+Change background color and font color 
+of parent items when mouse hover 
+*/
+#nav li:hover a,
+#nav li a:hover
+{
+	background: transparent;
+	color: black;	
+}
+
+
+
+
+/* 
+Applie to group of Child Items
+Each Child Item will be invisible by default
+*/
+#nav ul {display: none;}
+
+/* Each Child Item will be visible if mouse hover */
+#nav li:hover ul {display: block;}
+
+#nav ul
+{
+	float: none;
+	position: absolute;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	top: 1.8em;
+	left: 0;
+}
+
+#nav ul li
+{
+	float: none;
+	clear: none;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	color: #999;
+}
+
+
+/* 
+Reset and re style 
+link of each child item
+*/
+#nav li:hover ul li a,
+#nav ul li a
+{
+	line-height: 200%;
+	display: block;
+	padding: 0 0 0 0;
+	float: none;
+	color: #999;
+
+}
+
+#nav li:hover ul li a:hover,
+#nav ul li a:hover
+{
+	background: #999;
+	color: #000;
+}
+
+table{
+width:1000px;
+}
+tr{
+width:100px;
+}

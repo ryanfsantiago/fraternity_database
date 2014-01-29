@@ -1,0 +1,14 @@
+mag lagay ka sa taas ng 
+$ryan=$_GET['wew'];
+
+TPS 
+
+sa option mo ibalik mo sa category kunwari 
+
+Category.php?wew="ito ung search";
+
+tps sa select mo 
+select * from db where id='$ryan';
+http://category.php/?wew="ito
+category.php
+gets mo ba? prang pag eedit lng magbibigay ka ng id sa mismong site mo
