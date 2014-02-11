@@ -1,86 +1,63 @@
 <?php
 include_once("header.php");
+$category = $_GET['category'];
 ?>
 
 
 <div class="container">
 <h1>Recognized SOs</h1>
-<p>School year:&nbsp;2012-2013</p>
-<h2>College-based Organizations</h2>
-<ul>
-<?php
-mysql_select_db("osa_organization", $conn);
-$result = mysql_query("SELECT organization . * , category . * , renewal . * FROM organization
-INNER JOIN category, renewal
-WHERE renewal.schoolyear =  '2012-2013'
-AND renewal.org_no = organization.org_no
-AND organization.cat_id = category.cat_id
-AND organization.cat_id =  '1'");
+ <table style="width:300px;">	
+  <tr><td>School Year</td><td>
+  <select name="sy" id="sy" class="form-control" onload="showOrg(sy.value,category.value)"  onchange="showOrg(sy.value,category.value)">
+  <option selected="selected" value="">------</option>
+   <?php
+			mysql_select_db("osa_organization", $con);
+			$result = mysql_query("SELECT distinct schoolyear FROM renewal");
 			
 			while($row = mysql_fetch_array($result))
 			{ ?>  
-              <li>
-				<?php echo $row['name']?>
-				</li>
+              <option value="<?php echo $row['schoolyear']?>">
+				<?php echo $row['schoolyear']?>
+				</option>
 		<?php } ?>
-</ul>
-<h2>Non-College-based Organizations</h2>
-<ul>
-<?php
-mysql_select_db("osa_organization", $conn);
-$result = mysql_query("SELECT organization . * , category . * , renewal . * FROM organization
-INNER JOIN category, renewal
-WHERE renewal.schoolyear =  '2012-2013'
-AND renewal.org_no = organization.org_no
-AND organization.cat_id = category.cat_id
-AND organization.cat_id =  '2'");
-			
-			while($row = mysql_fetch_array($result))
-			{ ?>  
-              <li>
-				<?php echo $row['name']?>
-				</li>
-		<?php } ?>
-</ul>
-<h2>Fraternities/Sororities</h2>
-<ul>
-<?php
-mysql_select_db("osa_organization", $conn);
-$result = mysql_query("SELECT organization . * , category . * , renewal . * FROM organization
-INNER JOIN category, renewal
-WHERE renewal.schoolyear =  '2012-2013'
-AND renewal.org_no = organization.org_no
-AND organization.cat_id = category.cat_id
-AND organization.cat_id =  '3'");
-			
-			while($row = mysql_fetch_array($result))
-			{ ?>  
-              <li>
-				<?php echo $row['name']?>
-				</li>
-		<?php } ?>
-</ul>
-<h2>Campus Ministries</h2>
-<ul>
-<?php
-mysql_select_db("osa_organization", $conn);
-$result = mysql_query("SELECT organization . * , category . * , renewal . * FROM organization
-INNER JOIN category, renewal
-WHERE renewal.schoolyear =  '2012-2013'
-AND renewal.org_no = organization.org_no
-AND organization.cat_id = category.cat_id
-AND organization.cat_id =  '4'");
-			
-			while($row = mysql_fetch_array($result))
-			{ ?>  
-              <li>
-				<?php echo $row['name']?>
-				</li>
-		<?php } ?>
-</ul>
+  </select><br />
+ </td> </tr>  
+  <input type="hidden" name="category" id="category"value="<?php echo $category?>">
+</table>
+ 
+	<div id="txtHint"></div>
+
+
 </div>
 <div id="footer">
 <center>Copyright &copy; 2013</center>
 </div>
+<script>
+function showOrg(str,str2)
+{
+if (str==""&&str2=="")
+  {
+  document.getElementById("txtHint").innerHTML="";
+  return;
+  } 
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","findorg.php?q="+str+"&r="+str2,true);
+xmlhttp.send();
+}
+</script>
 </body>
 </html>

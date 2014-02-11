@@ -101,6 +101,10 @@ $sql="SELECT organization.*,category.*,renewal.*,organization_has_adviser.*, adv
 	<td>  <input   type="text" name="position" id="org" size="30" value="<?php echo $row['position']?>"/> </td>	 
 	
 </tr>
+<tr><td><label for="gend">Contact No.:</label></td><td><input type="text" name="contact" value="<?php echo $row['contact_no']?>"></td></tr>
+
+<tr><td><label>Address</label></td><td><textarea name="address"><?php echo $row['address']?></textarea></td></tr>
+
 <tr>
 	<td>	<label for="org">Status of Appointment:</label> </td>
 	<td>  <select style="font-size:13px; margin-right:225px" name="tenure" id="tenure" class="selecter">

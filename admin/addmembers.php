@@ -8,6 +8,17 @@
 
 ?>
 <?php
+
+$file = $_FILES ['file'];
+$name1 = $file ['name'];
+$type = $file ['type'];
+$size = $file ['size'];
+$tmppath = $file ['tmp_name']; 
+
+if($name1!="")
+{ move_uploaded_file ($tmppath,'photo/'.$name1); }
+
+
 	$sy=$_POST['sy'];
 	$position=$_POST['position'];
 	$cat=$_POST['category'];
@@ -19,9 +30,11 @@
 	$gender=$_POST['gender'];
 	$course=$_POST['course'];
 	$year=$_POST['year'];
+	$contact=$_POST['contact'];
+	$photo=$name1;
 	
-	$sql = "INSERT INTO member ( lastname, firstname, mi, bdate, gender) 
-	VALUES ('$lname', '$fname', '$miname', '$date', '$gender')";
+	$sql = "INSERT INTO member ( lastname, firstname, mi, bdate, gender, contact_no,photo) 
+	VALUES ('$lname', '$fname', '$miname', '$date', '$gender','$contact','$photo')";
 
 	if (!mysql_query($sql,$conn))
 					{

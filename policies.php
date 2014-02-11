@@ -13,7 +13,7 @@ include_once("header.php");
 <li> 	Project or completion reports must be filed within 10 working days after the activity has been completed with proper documentation and certification (i.e. pictures, signatories, attendance, communications, programs, receipts, requests and the like)</li>
 
 <li> 	All cases involving student activities shall be subject to applicable university rules and regulations.</li>
-<li>
+
 <li> 	Advisers of student organizations should be present in every activity/project meeting of his/her advisory student organizations.</li>
 
 <li> 	Other  student activities not mentioned in these guidelines may only be allowed to conduct upon approval by the Dean of Students or his/her duly authorized representative.</li>

@@ -37,7 +37,6 @@ $result2 = mysql_query($sql);
     <th >Name</th>
 	 <th >Category</th>
     <th >Date Established</th>
-	<th >Financial Status</th>
   </tr>
   <?php
   $q=$_GET["q"];
@@ -50,7 +49,7 @@ if (!$con)
   }
 
 mysqli_select_db($con,"osa_organization");
-$sql="SELECT organization.*,category.*,renewal.* FROM organization inner join category,renewal WHERE renewal.schoolyear = '".$q."' and renewal.org_no=organization.org_no and organization.cat_id=category.cat_id order by category_name" ;
+$sql="SELECT organization.*,category.*,renewal.* FROM organization inner join category,renewal WHERE renewal.schoolyear = '".$q."' and renewal.org_no=organization.org_no and organization.cat_id=category.cat_id order by category.cat_id" ;
 
 $result = mysqli_query($con,$sql);
   while($row = mysqli_fetch_array($result))
@@ -59,7 +58,6 @@ $result = mysqli_query($con,$sql);
    echo "<td>" . $row['name'] . "</td>";
     echo "<td>" . $row['category_name'] . "</td>";
   echo "<td>" . $row['date_estb'] . "</td>";
-   echo "<td>" . $row['financial_status'] . "</td>";
    
   
 echo "</tr>";}

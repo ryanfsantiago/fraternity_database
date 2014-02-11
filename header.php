@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>OSA-SOU</title>
 <meta name= "viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
@@ -34,7 +34,15 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="default.php">Home</a></li>
 			<li><a href="about.php">About</a></li>
-			<li><a href="so.php">Recognized SOs</a></li>
+			<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle = "dropdown">Recognized SOs<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+					<li><a href="so.php?category=1"> College-based</a></li>
+					<li><a href="so.php?category=2"> Non-College based</a></li>
+					<li><a href="so.php?category=3"> Fraternities/Sororities</a></li>
+					<li><a href="so.php?category=4"> Campus Ministries</a></li>
+					</ul>
+				</li>  
 			<li><a href="policies.php">Policies</a></li>
 		</ul>
 		</div>

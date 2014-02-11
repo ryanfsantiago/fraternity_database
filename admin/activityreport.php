@@ -14,12 +14,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Program of Work</title>
+<link rel="stylesheet" type="text/css" href="dist/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="dist/css/bootstrap-min.css" />
+<script src="jquery-1.10.2.min.js"></script>
+<script src="dist/js/bootstrap.js"></script>
+ <style type="text/css" media="print" >
+           .btn{display:none;} /*class for the div or any element we do not want to print*/
+</style>
 </head>
 
-<body align="center">
+<body>
+<script LANGUAGE="JavaScript"> 
+if (window.print) {
+document.write('<input type=button class="btn btn-primary" name=print value="Print this page" onClick="window.print()"></form>');
+}
+</script>
+  <div class="container" width="1000px">
 <form id="form1" name="form1" method="post" action="">
-  <p><img src="so.png" width="664" height="154" /></p>
+  <p style="text-align:center"><img src="so.png" width="75%" height="40%" /></p>
   <?php
   $q=$_GET["q"];
 $r=$_GET["r"];
@@ -31,21 +44,16 @@ $result2 = mysql_query($sql);
 		$name = $row2['name'];
 
 ?>
-  <h2>Program Of Work</h2>
-  <p>Organization:<?php echo $name ?>
+  <h2 style="text-align:center">Program Of Work</h2>
+  <p style="text-align:center"><b>Organization:&nbsp;<?php echo $name ?></b>
 <span></span>
   </p>
-  <table  width="1000" height="80" border="1" align="center">
+  <table class="table table-bordered">
     <tr>
-      <th scope="col">Title</th>
-      <th  scope="col">Venue</th>
-      <th  scope="col" >Clientele</th>
-      <th scope="col">Date Started</th>
-      <th  scope="col">Date Completed</th>
-      <th scope="col">Date Filed</th>
-	  <th scope="col">Income</th>
-	  <th scope="col">Expense</th>
-    </tr>
+      <th>Activities</th>
+      <th >Venue</th>
+      <th >Clientele</th>
+      <th>Date</th>
     </tr>
   <?php
 $q=$_GET["q"];
@@ -68,14 +76,11 @@ $result = mysqli_query($con,$sql);
   echo "<td>" . $row['venue'] . "</td>";
   echo "<td>" . $row['clientele'] . "</td>";
   echo "<td>" . $row['date_started'] . "</td>";
-  echo "<td>" . $row['date_completed'] . "</td>";
-  echo "<td>" . $row['date_filed'] . "</td>";
-  echo "<td>" . $row['income'] . "</td>";
-  echo "<td>" . $row['expense'] . "</td>";
 echo "</tr>";}
   ?>
   </table>
   <p>&nbsp;</p>
 </form>
+</div>
 </body>
 </html>

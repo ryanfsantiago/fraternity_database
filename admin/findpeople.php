@@ -14,12 +14,10 @@ echo "<form method ='post' action='renewed.php'  enctype='multipart/form-data'>"
 echo "<table>";
 echo "<tr><td>Renew to this School Year:</td>";
 echo "<td><select name='rsy' id='rsy'><option value=''>---</option>";
-$date = date('Y/m/d h:i:s a', time());
-	 mysql_select_db("osa_organization", $con);
-			$result = mysql_query("SELECT YEAR('$date') as yr");
-			$row = mysql_fetch_array($result);
-			$scy = $row['yr'];
-			echo '<option value="',$scy,'-',$scy+1,'">',$scy,'-',$scy+1,'</option>';
+      $j = 2010;
+      while($j < 2051)
+			{echo '<option value="',$j,'-',$j+1,'">',$j,'-',$j+1,'</option>';
+        $j = $j +1;}
 echo "</select>";
 
 echo "</td></tr>";
@@ -47,7 +45,7 @@ echo "<tr><td>Date Filed:</td><td><input  type='date' name='rdate'id='inputField
   <tr></tr>";
   echo "</table >";
 mysqli_select_db($con,"osa_organization");
-$sql="SELECT organization.*,category.*,renewal.*,member_has_organization.*, member.* FROM organization inner join category,renewal,member,member_has_organization WHERE renewal.schoolyear = '".$q."' and organization.cat_id = '".$r."' and renewal.org_no=organization.org_no and organization.cat_id=category.cat_id and renewal.renew_id='".$s."' and member_has_organization.renew_id=renewal.renew_id and member_has_organization.member_id=member.member_id" ;
+$sql="SELECT organization.*,category.*,renewal.*,member_has_organization.*, member.*,position.* FROM organization inner join category,renewal,member,member_has_organization,position WHERE renewal.schoolyear = '".$q."' and organization.cat_id = '".$r."' and renewal.org_no=organization.org_no and organization.cat_id=category.cat_id and renewal.renew_id='".$s."' and member_has_organization.renew_id=renewal.renew_id and member_has_organization.member_id=member.member_id and position.pos_id=member_has_organization.pos_id order by position.pos_id" ;
 
 $result = mysqli_query($con,$sql);
 
@@ -63,7 +61,6 @@ echo "<table border='0' class='resulta'>
 <th>Renew</th>
 <th>Members' Name</th>
 <th>Position</th>
-<th>Course</th>
 <th>Year Level</th>
 </tr>";
 
@@ -73,9 +70,9 @@ while($row = mysqli_fetch_array($result))
   echo "<tr>";
   echo "<td>"."<input type='checkbox' name='chkMem[]' value='".$row['member_id']."'>"."</td>";
   echo "<td>" . $row['lastname'].", ". $row['firstname']." ".$row['mi']."."."</td>";
-  echo "<td><input type='text' name='pos[]' value='" . $row['position']."'></td>";
-  echo "<td><input type='text' name='course[]' value='" . $row['course']."'></td>";
-  echo "<td><input type='text' name='year[]' value='" . $row['year']."'></td>";
+  echo "<td><select type='text' name='pos[]'> <option value='" . $row['pos_id']."'>".$row['pos_name']."</option><option value='1'>President</option><option value='2'>Vice President</option><option value='3'>Member</option></select></td>";
+  echo "<input type='hidden' name='course[]' value='" . $row['course']."'>";
+  echo "<td><select name='year[]' ><option value='" . $row['year']."'>".$row['year']."</option><option value='2nd'>2nd</option><option value='3rd'>3rd</option><option value='4th'>4th</option><option value='5th'>5th</option><option value='6th'>6th</option></select></td>";
   echo "</tr>";
   }
 
@@ -88,7 +85,6 @@ echo "<table border='0' class='resulta'>
 <tr>
 <th>Renew</th>
 <th>Advisers' Name</th>
-<th>Position</th>
 <th>Status of Appointment</th>
 <th>Years of Service</th>
 <th>Civil Status</th>
@@ -100,10 +96,15 @@ while($row = mysqli_fetch_array($result))
   echo "<input type='hidden' name='org' value='".$row['org_no']."'>";
   echo "<td>"."<input type='checkbox' name='chkAdv[".$i."]' value='".$row['adviser_id']."'>"."</td>";
    echo "<td>" . $row['lastname'].", ". $row['firstname']." ".$row['mi']."."."</td>";
-	echo "<td><input type='text' name='advposition[".$i."]' value='" . $row['position']."'></td>";
-	echo "<td><input type='text' name='advstatus[".$i."]' value='" . $row['status_of_appointment']."'></td>";
-	echo "<td><input type='text' name='advservice[".$i."]' value='" . $row['years_of_service']."'></td>";
-	echo "<td><input type='text' name='advcivil[".$i."]' value='" . $row['civil_status']."'></td>";
+	echo "<input type='hidden' name='advposition[".$i."]' value='" . $row['position']."'>";
+	echo "<td><select name='advstatus[".$i."]'> <option value='" . $row['status_of_appointment']."'>".$row['status_of_appointment']."</option><option value='Permanent'>Permanent</option><option value='Temmporary'>Temmporary</option></select></td>";
+	echo "<td><select name='advservice[".$i."]'> <option value='" . $row['years_of_service']."'>".$row['years_of_service']."</option>";
+  $j = 1;
+  while($j < 51)
+    {echo "<option value='".$j."'>".$j."</option>";
+      $j=$j+1;}
+  echo "</select></td>";
+	echo "<td><select name='advcivil[".$i."]' ><option value='" . $row['civil_status']."'>".$row['civil_status']."</option><option value='Single'>Single</option><option value='Married'>Married</option></select></td>";
   echo "</tr>";
   $i=$i+1;
   }

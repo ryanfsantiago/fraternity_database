@@ -18,6 +18,7 @@ echo "<table border='1'>
 <th>Advisers' Name</th>
 <th>Position</th>
 <th>Status of Appointment</th>
+<th>Info</th>
 <th>Option</th>
 </tr>";
 
@@ -27,6 +28,7 @@ while($row = mysqli_fetch_array($result))
   echo "<td>" . $row['lastname'] .", ".$row['firstname']."</td>";
   echo "<td>" . $row['position'] . "</td>";
   echo "<td>" . $row['status_of_appointment'] . "</td>";
+  echo "<td>"."<a href ='form12.php?q=". $row['schoolyear']."&r=".$row['cat_id']."&s=".$row['renew_id']."&t=".$row['adviser_id']."'>Form 12</a>";
   echo "<td>"."<a href ='editadviser.php?q=". $row['schoolyear']."&r=".$row['cat_id']."&s=".$row['renew_id']."&t=".$row['adviser_id']."'><img src='images/icons/edit.png' alt='' title='EDIT' />"."
   "."<a href ='deleteadviser.php?id=". $row['renew_id']."&rid=".$row['adviser_id']."'><img src='images/icons/del.png' alt='' title='DELETE' />"."</td>";
   echo "</tr>";

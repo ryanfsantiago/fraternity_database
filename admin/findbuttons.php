@@ -13,6 +13,7 @@ if (!$con)
 
 echo "<a href='activityreport.php?q=".$q."&r=".$r."&s=".$s."'><input type='button' value='Print Activities'></a><br><br>";
 echo "<a href='memberreport.php?q=".$q."&r=".$r."&s=".$s."'><input type='button' value='Print Roster of Members & Advisers'></a><br><br>";
+echo "<a href='form1.php?q=".$q."&r=".$r."&s=".$s."'><input type='button' value='Form 1'></a><br><br>";
 echo "<br><br><br>";
 
 

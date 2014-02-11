@@ -22,9 +22,11 @@
 	$pos=$_POST['position'];
 	$tenure=$_POST['tenure'];
 	$civil= $_POST['civil_status'];
+	$contact = $_POST['contact'];
+	$address= $_POST['address'];
 	
 	
-	$sql = "Update adviser set lastname='$lname', firstname='$fname', mi='$miname', gender='$gender', bdate ='$date' where adviser_id= '$aid' ";
+	$sql = "Update adviser set lastname='$lname', firstname='$fname', mi='$miname', gender='$gender', bdate ='$date', address= '$address', contact_no = '$contact' where adviser_id= '$aid' ";
 
 	if (!mysql_query($sql,$conn))
 					{

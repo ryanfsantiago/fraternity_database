@@ -24,18 +24,25 @@ $t=$_GET["t"];
 <h1 style="margin-top:20px;">Edit MEMBER  </h1>
 
 
-<div id="add">
+<div class="container">
+	<style>
+	input,textarea,select
+	{display: block;}
+	img
+	{border-radius:15px;}
+	</style>
 
-<form method ="POST" action="editmembers.php"  enctype="multipart/form-data">	 
+
+<form method ="POST" action="editmembers.php"  enctype="multipart/form-data" role="form">	 
 		
-<table cellpadding="3" cellspacing="5" >	
 
 
-	<td colspan="2"><h1>Personal Information</h1><hr /> </td>
-	<input type="hidden" name="mid" value="<?php echo $row['member_id']?>">
-	<input type="hidden" name="rid" value="<?php echo $row['renew_id']?>">
-</tr>
-<tr><td>School Year</td><td><select name="sy" id="sy" onchange="showOrg(sy.value,category.value)">
+	<td colspan="2"><h1>Personal Information</h1><hr /> 
+	<input size="60" class="form-control" type="hidden" name="mid" value="<?php echo $row['member_id']?>">
+	<input size="60" class="form-control" type="hidden" name="rid" value="<?php echo $row['renew_id']?>">
+
+<div class="form-group">
+<label>School Year</label><select class="form-control" name="sy" id="sy" onchange="showOrg(sy.value,category.value)">
    <option value="<?php echo $row['schoolyear']?>"><?php echo $row['schoolyear']?></option>
    
   <?php
@@ -49,8 +56,8 @@ $t=$_GET["t"];
 				</option>
 		<?php } ?>
   </select><br />
- </td> </tr>  
-  <tr><td>Category</td><td><select name="category" id="category" onchange="showOrg(sy.value,category.value)">
+    </div>
+  Category<select class="form-control" name="category" id="category" onchange="showOrg(sy.value,category.value)">
   <option value="<?php echo $row['cat_id']?>"><?php echo $row['category_name']?></option>
 <?php
 			mysql_select_db("osa_organization", $conn);
@@ -63,75 +70,92 @@ $t=$_GET["t"];
 				</option>
 		<?php } ?>
   </select><br />
- </td> </tr>
- <tr><td>Organization</td><td> 
- <select name="org" id="org" onchange="showMember(sy.value,category.value,org.value)">
+  
+ Organization 
+ <select class="form-control" name="org" id="org" onchange="showMember(sy.value,category.value,org.value)">
   <option value="<?php echo $row['renew_id']?>" ><?php echo $row['name']?></option>
   </select><br />
- </td></tr>
-<tr><td><label>Position in the Organization</label></td><td><input type="text" name="position" id="position" value="<?php echo $row['position']?>"><td></tr>
+ <br>
+ <img id="blah" src="photo/default.jpg" alt="your image" width="250px" height="250px"   />
+ <input size="60"  type='file' id="imgInp" name="file" accept="image/*" />
+<label>Position in the Organization</label>
 
-<tr>
-	<td>     <label for="br">Last Name</label>	 </td>
-	<td>	 <input   type="text" name="lname" id="br" size="30" placeholder="" value="<?php echo $row['lastname']?>"/></td>
+<select class="form-control" name="position">
+	<?php
+			mysql_select_db("osa_organization", $conn);
+			$result2 = mysql_query("SELECT * from position where pos_id=".$row['pos_id']."");
+			$row2 = mysql_fetch_array($result2);
+			 ?>  
+<option value="<?php echo $row['pos_id']?>"><?php echo $row2['pos_name']?></option>
+<option value="1">President</option>
+<option value="2">Vice President</option>
+<option value="3">Member</option>
+</select>
 
-	
-</tr>
-<tr>
-	<td>     <label for="br">First Name</label>	 </td>
-	<td>	 <input   type="text" name="fname" id="br" size="30" placeholder=""value="<?php echo $row['firstname']?>"/></td>
-	
-	
 
-	
-</tr>
-<tr>
-	<td>     <label for="br">Middle Initial</label>	 </td>
-	<td>	 <input   type="text" name="miname" id="br" size="30" placeholder="" value="<?php echo $row['mi']?>"/></td>
-	
 
-	
-</tr>
 
-<tr>
-	<td>     <label for="br">Course</label>	 </td>
-	<td>	 <input   type="text" name="course" id="br" size="30" placeholder="" value="<?php echo $row['course']?>"/></td>
-	
+	     <label for="br">Last Name</label>	 
+		 <input size="60" class="form-control"   type="text" name="lname" id="br" size="30" placeholder="" value="<?php echo $row['lastname']?>"/>
 
 	
-</tr>
-	
-<tr>
-	<td>     <label for="br">Year</label>	 </td>
-	<td>	 <input   type="text" name="year" id="br" size="30" placeholder="" value="<?php echo $row['year']?>"/></td>
-	
 
-	
-</tr>
-	
-<tr>
-	<td>		<label for="inputField">Birth Date:</label></td>
-	<td>		<input  type="date" name="date" id="inputField" value="<?php echo $row['bdate']?>"></td>
+
+	     <label for="br">First Name</label>	 
+		 <input size="60" class="form-control"   type="text" name="fname" id="br" size="30" placeholder=""value="<?php echo $row['firstname']?>"/>
 	
 	
 
 	
-	
-</tr>
 
-<tr>
-	<td>		<label for="gend">Gender:</label> </td>			
-	<td>		<select name="gender">
+
+	     <label for="br">Middle Initial</label>	 
+		 <input size="60" class="form-control"   type="text" name="miname" id="br" size="30" placeholder="" value="<?php echo $row['mi']?>"/>
+	
+
+	
+
+
+
+	     <label for="br">Course</label>	 
+		 <input size="60" class="form-control"   type="text" name="course" id="br" size="30" placeholder="" value="<?php echo $row['course']?>"/>
+	
+
+	
+
+	
+
+	     <label for="br">Year</label>	 
+		 <input size="60" class="form-control"   type="text" name="year" id="br" size="30" placeholder="" value="<?php echo $row['year']?>"/>
+	
+
+	
+
+	
+
+			<label for="inputField">Birth Date:</label>
+			<input size="60" class="form-control"  type="date" name="date" id="inputField" value="<?php echo $row['bdate']?>">
+	
+	
+
+	
+	
+
+
+
+			<label for="gend">Gender:</label> 			
+			<select class="form-control" name="gender">
 				<option value="<?php echo $row['gender']?>"><?php echo $row['gender']?></option>
 				<option value="male">Male</option>
 				<option value="female">Female</option>
 				</select>
-			</td>
-</tr>
+			
 
-<tr>
-<td colspan="2"><h1>Address Information</h1><hr /> </td>
-</tr>
+
+<label for="gend">Contact No.:</label><input size="60" class="form-control" type="text" name="contact" value="<?php echo $row['contact_no']?>">
+
+<td colspan="2"><h1>Address Information</h1><hr /> 
+
 		<?php
 			mysql_select_db("osa_organization", $conn);
 			$result2 = mysql_query("SELECT * from address where member_id = '".$t."' and type = 'Home address' ");
@@ -139,25 +163,25 @@ $t=$_GET["t"];
 			$row2 = mysql_fetch_array($result2);
 			 ?>  
             
-<tr><td>Home Address</td></tr>
-	<tr>
-	<td>	<label for            ="org">House No./Subdivision/Village/Barangay:</label> </td>
-	<td>  <textarea  type         ="text" name="barangay" id="org" size="30" placeholder=""><?php echo $row2['brgy']?></textarea> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Municipality :</label> </td>
-	<td>  <input   type           ="text" name="municipality" id="org" size="30" placeholder="" value="<?php echo $row2['municipality']?>"/> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Province :</label> </td>
-	<td>  <input   type           ="text" name="province" id="org" size="30" placeholder="" value="<?php echo $row2['province']?>"/> </td>	 
-	</tr>
-	<tr>
-	<td>	 </td>
-	<td>  <input type="hidden" value="Home Address" name="adtype"> </td>	 	
-</tr>
+Home Address
+	
+		<label for            ="org">House No./Subdivision/Village/Barangay:</label> 
+	  <textarea class="form-control"  type         ="text" name="barangay" id="org" size="30" placeholder=""><?php echo $row2['brgy']?></textarea> 	 
+	
+	
+		<label for            ="org">Municipality :</label> 
+	  <input size="60" class="form-control"   type           ="text" name="municipality" id="org" size="30" placeholder="" value="<?php echo $row2['municipality']?>"/> 	 
+	
+	
+		<label for            ="org">Province :</label> 
+	  <input size="60" class="form-control"   type           ="text" name="province" id="org" size="30" placeholder="" value="<?php echo $row2['province']?>"/> 	 
+	
+	
+		 
+	  <input size="60" class="form-control" type="hidden" value="Home Address" name="adtype"> 	 	
 
-<tr><td>CLSU Address</td></tr>
+
+CLSU Address
 	<?php
 			mysql_select_db("osa_organization", $conn);
 			$result2 = mysql_query("SELECT * from address where member_id = '".$t."' and type = 'Clsu Address' ");
@@ -165,31 +189,31 @@ $t=$_GET["t"];
 			$row2 = mysql_fetch_array($result2);
 			 ?>  
 
-	<tr>
-	<td>	<label for            ="org">House No./Subdivision/Village/Barangay:</label> </td>
-	<td>  <textarea  type    ="text" name="cbarangay" id="org" size="30" placeholder=""><?php echo $row2['brgy']?></textarea> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Municipality :</label> </td>
-	<td>  <input   type      ="text" name="cmunicipality" id="org" size="30" placeholder="" value="<?php echo $row2['municipality']?>"/> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Province :</label> </td>
-	<td>  <input   type    ="text" name="cprovince" id="org" size="30" placeholder="" value="<?php echo $row2['province']?>"/> </td>	 
-	</tr>
-	<tr>
-	<td>	 </td>
-	<td>  <input type="hidden" value="Clsu Address" name="cadtype"> </td>	 	
-</tr>
+	
+		<label for            ="org">House No./Subdivision/Village/Barangay:</label> 
+	  <textarea class="form-control"  type    ="text" name="cbarangay" id="org" size="30" placeholder=""><?php echo $row2['brgy']?></textarea> 	 
+	
+	
+		<label for            ="org">Municipality :</label> 
+	  <input size="60" class="form-control"   type      ="text" name="cmunicipality" id="org" size="30" placeholder="" value="<?php echo $row2['municipality']?>"/> 	 
+	
+	
+		<label for            ="org">Province :</label> 
+	  <input size="60" class="form-control"   type    ="text" name="cprovince" id="org" size="30" placeholder="" value="<?php echo $row2['province']?>"/> 	 
+	
+	
+		 
+	  <input size="60" class="form-control" type="hidden" value="Clsu Address" name="cadtype"> 	 	
+
 
 
 
 			
 
-<tr>
-	<td colspan="4"><h1>Parent's Information</h1><hr /> </td>			
-</tr>	
-<tr><td><h4>Father</h4></td></tr>
+
+	<td colspan="4"><h1>Parent's Information</h1><hr /> 			
+	
+<h4>Father</h4>
 
 <?php
 			mysql_select_db("osa_organization", $conn);
@@ -198,25 +222,25 @@ $t=$_GET["t"];
 			$row2 = mysql_fetch_array($result2);
 			 ?>  
 
-<tr>
-	<td>     <label for="br">Last Name:</label>	 </td>
-	<td>	 <input   type="text" name="plname" id="br" size="30" placeholder="" value="<?php echo $row2['lastname']?>"/></td>	
 
-</tr>
-<tr>
-	<td>     <label for="br">First Name:</label>	 </td>
-	<td>	 <input   type="text" name="pfname" id="br" size="30" placeholder="" value="<?php echo $row2['firstname']?>"/></td>
-	</tr>
+	     <label for="br">Last Name:</label>	 
+		 <input size="60" class="form-control"   type="text" name="plname" id="br" size="30" placeholder="" value="<?php echo $row2['lastname']?>"/>	
 
-<tr>
-	<td>     	 </td>
-	<td>	<input type="hidden" value="father" name="ptype"></td>	
-	
-	</tr>
+
+
+	     <label for="br">First Name:</label>	 
+		 <input size="60" class="form-control"   type="text" name="pfname" id="br" size="30" placeholder="" value="<?php echo $row2['firstname']?>"/>
 	
 
+
+	     	 
+		<input size="60" class="form-control" type="hidden" value="father" name="ptype">	
 	
-	<tr><td><h4>Mother</h4></td></tr>
+	
+	
+
+	
+	<h4>Mother</h4>
 	<?php
 			mysql_select_db("osa_organization", $conn);
 			$result2 = mysql_query("SELECT * from parents where member_id = '".$t."' and type = 'mother' ");
@@ -225,23 +249,23 @@ $t=$_GET["t"];
 			 ?>  
 	
 	
-<tr>
-	<td>     <label for="br">Last Name:</label>	 </td>
-	<td>	 <input   type="text" name="mplname" id="br" size="30" placeholder="" value="<?php echo $row2['lastname']?>"/></td>	
 
-</tr>
-<tr>
-	<td>     <label for="br">First Name:</label>	 </td>
-	<td>	 <input   type="text" name="mpfname" id="br" size="30" placeholder="" value="<?php echo $row2['firstname']?>"/></td>
-	</tr>
+	     <label for="br">Last Name:</label>	 
+		 <input size="60" class="form-control"   type="text" name="mplname" id="br" size="30" placeholder="" value="<?php echo $row2['lastname']?>"/>	
 
-<tr>
-	<td>      </td>
-	<td>	<input type="hidden" value="mother" name="mptype"></td>	
+
+
+	     <label for="br">First Name:</label>	 
+		 <input size="60" class="form-control"   type="text" name="mpfname" id="br" size="30" placeholder="" value="<?php echo $row2['firstname']?>"/>
 	
-	</tr>
 
-<tr><td><h4>Guardian</h4></td></tr>
+
+	      
+		<input size="60" class="form-control" type="hidden" value="mother" name="mptype">	
+	
+	
+
+<h4>Guardian</h4>
 
 <?php
 			mysql_select_db("osa_organization", $conn);
@@ -250,57 +274,37 @@ $t=$_GET["t"];
 			$row2 = mysql_fetch_array($result2);
 			 ?>  
 
-<tr>
-	<td>     <label for="br">Last Name:</label>	 </td>
-	<td>	 <input   type="text" name="gplname" id="br" size="30" placeholder="" value="<?php echo $row2['lastname']?>"/></td>	
 
-</tr>
-<tr>
-	<td>     <label for="br">First Name:</label>	 </td>
-	<td>	 <input   type="text" name="gpfname" id="br" size="30" placeholder="" value="<?php echo $row2['firstname']?>"/></td>
-	</tr>
+	     <label for="br">Last Name:</label>	 
+		 <input size="60" class="form-control"   type="text" name="gplname" id="br" size="30" placeholder="" value="<?php echo $row2['lastname']?>"/>	
 
-<tr>
-	<td>     	 </td>
-	<td>	<input type="hidden" value="guardian" name="gptype"></td>	
+
+
+	     <label for="br">First Name:</label>	 
+		 <input size="60" class="form-control"   type="text" name="gpfname" id="br" size="30" placeholder="" value="<?php echo $row2['firstname']?>"/>
 	
-	</tr>
+
+
+	     	 
+		<input size="60" class="form-control" type="hidden" value="guardian" name="gptype">	
+	
+	
 
 	
-<tr>
-	<td colspan="4"><h1>Skill Information</h1><hr /> </td>			
-</tr>	
+
+	<td colspan="4"><h1>Skill Information</h1><hr /> 			
+	
 <?php
 			mysql_select_db("osa_organization", $conn);
 			$result2 = mysql_query("SELECT * from skill where member_id = '".$t."'");
 			
 			$row2 = mysql_fetch_array($result2);
 			 ?>  
-<tr>
-	<td>     <label for="br">Skill Name:</label>	 </td>
-	<td>	 <textarea   type="text" name="skills" id="br" size="30" /><?php echo $row2['type']?></textarea></td>	
 
-	</tr>
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<tr>
-	<td colspan="4" style="text-align:center;">	<input  type="submit" name="submit" value ="SAVE">	</td>			
-	</tr>
-	
-	
-	
-	</table>		
+	     <label for="br">Skill Name:</label>	 
+		 <textarea class="form-control"   type="text" name="skills" id="br" size="30" /><?php echo $row2['type']?></textarea>	
+	<br>
+		<input size="60" class="form-control btn-success"  type="submit" name="submit" value ="SAVE">				
 			</form>
 </div>
 
@@ -309,7 +313,25 @@ $t=$_GET["t"];
 					
 <div id="footer">
 Copyright &copy; 2013
-</div>					
+</div>	
+<script>
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+</script>
+
 <script>
 function showOrg(str,str2)
 {

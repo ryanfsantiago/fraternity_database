@@ -8,6 +8,40 @@
 
 ?>
 <?php
+
+$file = $_FILES ['file'];
+$name1 = $file ['name'];
+$type = $file ['type'];
+$size = $file ['size'];
+$tmppath = $file ['tmp_name']; 
+
+	$result2 = mysql_query("SELECT * FROM member WHERE member_id=".$_POST['mid']."");
+	while($row=mysql_fetch_array($result2))
+	{
+		$deletion="photo/". $row['photo'];
+		$test=$file;
+		
+		if($name1 == "" || $name1 == "default.jpg"){
+		echo 'no file chosen';
+		}
+		else if (!unlink($deletion))
+	  {
+	  echo ("Error in deleting Image $deletion ");
+	  }
+	else
+	  {
+
+if($name1!="")
+{
+
+
+move_uploaded_file ($tmppath,'photo/'.$name1);
+
+
+
+
+
+
 	$mid=$_POST['mid'];
 	$rid=$_POST['rid'];
 	
@@ -23,6 +57,8 @@
 	$gender=$_POST['gender'];
 	$course=$_POST['course'];
 	$year=$_POST['year'];
+	$contact = $_POST['contact'];
+	$photo = $name1;
 	
 	
 	$barangay=$_POST['barangay'];
@@ -34,19 +70,13 @@
 	
 	
 	
-	$sql = "Update member set lastname = '$lname', firstname = '$fname', mi='$miname' , bdate = '$date', gender= '$gender' where member_id= '$mid'";
+	$sql = "Update member set lastname = '$lname', firstname = '$fname', mi='$miname' , bdate = '$date', gender= '$gender' ,  contact_no= '$contact' , photo = '$photo' where member_id= '$mid'";
 	
 	if (!mysql_query($sql,$conn))
 					{
 					die('Error querying database' . mysql_error());
 					}
 
-?>
-
-
-
-
-<?php
 
 	
 	
@@ -58,9 +88,7 @@
 					}
 					
 
-?>
 
-<?php
 
 	$cbarangay=$_POST['cbarangay'];
 	$cmunicipality=$_POST['cmunicipality'];
@@ -74,11 +102,7 @@
 					}
 					
 
-?>
 
-
-
-<?php
 
 	$plname=$_POST['plname'];
 	$pfname=$_POST['pfname'];
@@ -98,25 +122,20 @@
 					}
 					
 
-?>
-<?php
+
 $sql = "Update parents set lastname='$mplname', firstname='$mpfname' where type='mother'  and member_id = '$mid'"; 
 
 	if (!mysql_query($sql,$conn))
 					{
 					die('Error querying database' . mysql_error());}
-?>
-<?php
+
 $sql = "Update parents set lastname='$gplname', firstname='$gpfname' where type='guardian'  and member_id = '$mid'"; 
 
 	if (!mysql_query($sql,$conn))
 					{
 					die('Error querying database' . mysql_error());}
 
-?>
 
-
-<?php
 	$skills=$_POST['skills'];
 
 	
@@ -128,11 +147,8 @@ $sql = "Update parents set lastname='$gplname', firstname='$gpfname' where type=
 					}
 					
 
-?>
 
-<?php
-	
-	$sql = "update member_has_organization set position='$position',course='$course',year='$year' where renew_id='$rid' and member_id='$mid'";
+	$sql = "update member_has_organization set pos_id='$position',course='$course',year='$year' where renew_id='$rid' and member_id='$mid'";
 
 	if (!mysql_query($sql,$conn))
 					{
@@ -140,5 +156,7 @@ $sql = "Update parents set lastname='$gplname', firstname='$gpfname' where type=
 					}
 					echo "Member's Information successfully edited!";
 					echo '<a href="memberorg.php">Back to Menu</a>';
+
+	}}}
 ?>
 

@@ -16,7 +16,7 @@ include_once("header.php");
       </ol>
       <div class="carousel-inner">
         <div class="item">
-		<img src="images/1.jpg" style="width:100%;height:10%">
+		<img src="images/1.jpg" width="100%" height="1%">
           <div class="container">
             <div class="carousel-caption">
               <h1>Activities</h1>
@@ -25,7 +25,7 @@ include_once("header.php");
           </div>
         </div>
         <div class="item">
-         <img src="images/2.jpg" style="width:100%;height:10%">
+         <img src="images/2.jpg" width="100%" height="1%">
           <div class="container">
             <div class="carousel-caption">
               <h1></h1>
@@ -34,7 +34,7 @@ include_once("header.php");
           </div>
         </div>
         <div class="item active">
-         <img src="images/3.jpg" style="width:100%;height:10%">
+         <img src="images/3.jpg" width="100%" height="1%">
           <div class="container">
             <div class="carousel-caption">
               <h1></h1>

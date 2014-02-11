@@ -4,22 +4,30 @@ include_once("header.php");
 
 
 
+<div class="container">
+	<style>
+	input,textarea,select
+	{display: block;}
+	img
+	{border-radius:15px;}
+	</style>
 
 
-<h1 style="margin-top:20px;">ADD MEMBER  </h1>
+
+	<h1 style="margin-top:20px;">ADD MEMBER  </h1>
 
 
-<div id="add">
+<div class="container">
 
-<form method ="POST" action="addmembers.php"  enctype="multipart/form-data">	 
+<form method ="POST" runat="server" action="addmembers.php" class="" enctype="multipart/form-data">	 
 		
-<table cellpadding="3" cellspacing="5" >	
 
 
-	<td colspan="2"><h1>Personal Information</h1><hr /> </td>
+
+	<h1>Personal Information</h1> 
 	
-</tr>
-<tr><td>School Year</td><td><select name="sy" id="sy" onchange="showOrg(sy.value,category.value)">
+
+School Year<select name="sy" id="sy" onchange="showOrg(sy.value,category.value)">
    <option value="">---</option>
   <?php
 			mysql_select_db("osa_organization", $con);
@@ -32,8 +40,8 @@ include_once("header.php");
 				</option>
 		<?php } ?>
   </select><br />
- </td> </tr>  
-  <tr><td>Category</td><td><select name="category" id="category" onchange="showOrg(sy.value,category.value)">
+    
+  Category<select name="category" id="category" onchange="showOrg(sy.value,category.value)">
   <option value="">---</option>
 <?php
 			mysql_select_db("osa_organization", $con);
@@ -46,181 +54,190 @@ include_once("header.php");
 				</option>
 		<?php } ?>
   </select><br />
- </td> </tr>
- <tr><td>Organization</td><td> 
+  
+ Organization 
  <select name="org" id="org" onchange="showMember(sy.value,category.value,org.value)">
   <option value="" >------</option>
   </select><br />
- </td></tr>
-<tr><td><label>Position in the Organization</label></td><td><input type="text" name="position" id="position"><td></tr>
+  <img id="blah" src="photo/default.jpg" alt="your image" width="250px" height="250px"   />
+ <input type='file' id="imgInp" name="file" accept="image/*" />
+  
+<label>Position</label>
+	<select name="position" id="position">
+<option>----</option>
+<option value="1">President</option>
+<option value="2">Vice President</option>
+<option value="3">Member</option>
+	</select>
 
-<tr>
-	<td>     <label for="br">Last Name</label>	 </td>
-	<td>	 <input   type="text" name="lname" id="br" size="30" placeholder=""/></td>
 
-	
-</tr>
-<tr>
-	<td>     <label for="br">First Name</label>	 </td>
-	<td>	 <input   type="text" name="fname" id="br" size="30" placeholder=""/></td>
-	
-	
-
-	
-</tr>
-<tr>
-	<td>     <label for="br">Middle Initial</label>	 </td>
-	<td>	 <input   type="text" name="miname" id="br" size="30" placeholder=""/></td>
-	
+	     <label for="br">Last Name</label>	 
+		 <input   type="text" name="lname" id="br" size="30" placeholder=""/>
 
 	
-</tr>
 
-<tr>
-	<td>     <label for="br">Course</label>	 </td>
-	<td>	 <input   type="text" name="course" id="br" size="30" placeholder=""/></td>
-	
 
-	
-</tr>
-	
-<tr>
-	<td>     <label for="br">Year</label>	 </td>
-	<td>	 <input   type="text" name="year" id="br" size="30" placeholder=""/></td>
-	
-
-	
-</tr>
-	
-<tr>
-	<td>		<label for="inputField">Birth Date:</label></td>
-	<td>		<input  type="date" name="date" id="inputField"></td>
+	     <label for="br">First Name</label>	 
+		 <input   type="text" name="fname" id="br" size="30" placeholder=""/>
 	
 	
 
 	
-	
-</tr>
 
-<tr>
-	<td>		<label for="gend">Gender:</label> </td>			
-	<td>		<select name="gender">
+
+	     <label for="br">Middle Initial</label>	 
+		 <input   type="text" name="miname" id="br" size="30" placeholder=""/>
+	
+
+	
+
+
+
+	     <label for="br">Course</label>	 
+		 <input   type="text" name="course" id="br" size="30" placeholder=""/>
+	
+
+	
+
+	
+
+	     <label for="br">Year</label>	 
+		 <input   type="text" name="year" id="br" size="30" placeholder=""/>
+	
+
+	
+
+	
+
+			<label for="inputField">Birth Date:</label>
+			<input  type="date" name="date" id="inputField">
+	
+	
+
+	
+	
+
+
+
+			<label for="gend">Gender:</label> 			
+			<select name="gender">
 				<option value="">---</option>
 				<option value="male">Male</option>
 				<option value="female">Female</option>
 				</select>
-			</td>
-</tr>
+			
 
-<tr>
-<td colspan="2"><h1>Address Information</h1><hr /> </td>
-</tr>
+<label for="gend">Contact No.:</label><input type="text" name="contact">
 
-<tr><td>Home Address</td></tr>
-	<tr>
-	<td>	<label for            ="org">House No./Subdivision/Village/Barangay:</label> </td>
-	<td>  <textarea  type         ="text" name="barangay" id="org" size="30" placeholder=""></textarea> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Municipality :</label> </td>
-	<td>  <input   type           ="text" name="municipality" id="org" size="30" placeholder=""/> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Province :</label> </td>
-	<td>  <input   type           ="text" name="province" id="org" size="30" placeholder=""/> </td>	 
-	</tr>
-	<tr>
-	<td>	 </td>
-	<td>  <input type="hidden" value="Home Address" name="adtype"> </td>	 	
-</tr>
 
-<tr><td>CLSU Address</td></tr>
-	<tr>
-	<td>	<label for            ="org">House No./Subdivision/Village/Barangay:</label> </td>
-	<td>  <textarea  type         ="text" name="cbarangay" id="org" size="30" placeholder=""></textarea> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Municipality :</label> </td>
-	<td>  <input   type           ="text" name="cmunicipality" id="org" size="30" placeholder=""/> </td>	 
-	</tr>
-	<tr>
-	<td>	<label for            ="org">Province :</label> </td>
-	<td>  <input   type           ="text" name="cprovince" id="org" size="30" placeholder=""/> </td>	 
-	</tr>
-	<tr>
-	<td>	 </td>
-	<td>  <input type="hidden" value="Clsu Address" name="cadtype"> </td>	 	
-</tr>
+<td colspan="2"><h1>Address Information</h1><hr /> 
+
+
+Home Address
+	
+		<label for            ="org">House No./Subdivision/Village/Barangay:</label> 
+	  <textarea  type         ="text" name="barangay" id="org" size="30" placeholder=""></textarea> 	 
+	
+	
+		<label for            ="org">Municipality :</label> 
+	  <input   type           ="text" name="municipality" id="org" size="30" placeholder=""/> 	 
+	
+	
+		<label for            ="org">Province :</label> 
+	  <input   type           ="text" name="province" id="org" size="30" placeholder=""/> 	 
+	
+	
+		 
+	  <input type="hidden" value="Home Address" name="adtype"> 	 	
+
+
+CLSU Address
+	
+		<label for            ="org">House No./Subdivision/Village/Barangay:</label> 
+	  <textarea  type         ="text" name="cbarangay" id="org" size="30" placeholder=""></textarea> 	 
+	
+	
+		<label for            ="org">Municipality :</label> 
+	  <input   type           ="text" name="cmunicipality" id="org" size="30" placeholder=""/> 	 
+	
+	
+		<label for            ="org">Province :</label> 
+	  <input   type           ="text" name="cprovince" id="org" size="30" placeholder=""/> 	 
+	
+	
+		 
+	  <input type="hidden" value="Clsu Address" name="cadtype"> 	 	
+
 
 
 
 			
 
-<tr>
-	<td colspan="4"><h1>Parent's Information</h1><hr /> </td>			
-</tr>	
-<tr><td><h4>Father</h4></td></tr>
-<tr>
-	<td>     <label for="br">Last Name:</label>	 </td>
-	<td>	 <input   type="text" name="plname" id="br" size="30" placeholder=""/></td>	
 
-</tr>
-<tr>
-	<td>     <label for="br">First Name:</label>	 </td>
-	<td>	 <input   type="text" name="pfname" id="br" size="30" placeholder=""/></td>
-	</tr>
-
-<tr>
-	<td>     	 </td>
-	<td>	<input type="hidden" value="father" name="ptype"></td>	
+	<td colspan="4"><h1>Parent's Information</h1><hr /> 			
 	
-	</tr>
+<h4>Father</h4>
+
+	     <label for="br">Last Name:</label>	 
+		 <input   type="text" name="plname" id="br" size="30" placeholder=""/>	
+
+
+
+	     <label for="br">First Name:</label>	 
+		 <input   type="text" name="pfname" id="br" size="30" placeholder=""/>
 	
 
+
+	     	 
+		<input type="hidden" value="father" name="ptype">	
 	
-	<tr><td><h4>Mother</h4></td></tr>
-<tr>
-	<td>     <label for="br">Last Name:</label>	 </td>
-	<td>	 <input   type="text" name="mplname" id="br" size="30" placeholder=""/></td>	
-
-</tr>
-<tr>
-	<td>     <label for="br">First Name:</label>	 </td>
-	<td>	 <input   type="text" name="mpfname" id="br" size="30" placeholder=""/></td>
-	</tr>
-
-<tr>
-	<td>      </td>
-	<td>	<input type="hidden" value="mother" name="mptype"></td>	
 	
-	</tr>
-
-<tr><td><h4>Guardian</h4></td></tr>
-<tr>
-	<td>     <label for="br">Last Name:</label>	 </td>
-	<td>	 <input   type="text" name="gplname" id="br" size="30" placeholder=""/></td>	
-
-</tr>
-<tr>
-	<td>     <label for="br">First Name:</label>	 </td>
-	<td>	 <input   type="text" name="gpfname" id="br" size="30" placeholder=""/></td>
-	</tr>
-
-<tr>
-	<td>     	 </td>
-	<td>	<input type="hidden" value="guardian" name="gptype"></td>	
 	
-	</tr>
 
 	
-<tr>
-	<td colspan="4"><h1>Skill Information</h1><hr /> </td>			
-</tr>	
-<tr>
-	<td>     <label for="br">Skill Name:</label>	 </td>
-	<td>	 <textarea   type="text" name="skills" id="br" size="30" /></textarea></td>	
+	<h4>Mother</h4>
 
-	</tr>
+	     <label for="br">Last Name:</label>	 
+		 <input   type="text" name="mplname" id="br" size="30" placeholder=""/>	
+
+
+
+	     <label for="br">First Name:</label>	 
+		 <input   type="text" name="mpfname" id="br" size="30" placeholder=""/>
+	
+
+
+	      
+		<input type="hidden" value="mother" name="mptype">	
+	
+	
+
+<h4>Guardian</h4>
+
+	     <label for="br">Last Name:</label>	 
+		 <input   type="text" name="gplname" id="br" size="30" placeholder=""/>	
+
+
+
+	     <label for="br">First Name:</label>	 
+		 <input   type="text" name="gpfname" id="br" size="30" placeholder=""/>
+	
+
+
+	     	 
+		<input type="hidden" value="guardian" name="gptype">	
+	
+	
+
+	
+
+	<td colspan="4"><h1>Skill Information</h1><hr /> 			
+	
+
+	     <label for="br">Skill Name:</label>	 
+		 <textarea   type="text" name="skills" id="br" size="30" /></textarea>	
+
+	
 		
 	
 	
@@ -234,22 +251,42 @@ include_once("header.php");
 	
 	
 	
-	<tr>
-	<td colspan="4" style="text-align:center;">	<input  type="submit" name="submit" value ="SAVE">	</td>			
-	</tr>
+	
+	<td colspan="4" style="text-align:center;">	<input  type="submit" name="submit" value ="SAVE">				
 	
 	
 	
-	</table>		
+	
+			
 			</form>
 </div>
-
-	</div>				
-					
-					
-<div id="footer">
+<div id="footer" style="text-align:center">
 Copyright &copy; 2013
 </div>					
+
+	</div>				
+<script>
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+</script>
+
+
+					
+					
+
 <script>
 function showOrg(str,str2)
 {

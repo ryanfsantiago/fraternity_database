@@ -40,7 +40,7 @@ if ($existCount == 0) { // evaluate the count
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Form</title>
+<title>Admin OSA-SOU</title>
 <meta charset="utf-8" />
 
 <link rel="stylesheet" type="text/css" href="dist/css/bootstrap.css" />
@@ -69,10 +69,17 @@ if ($existCount == 0) { // evaluate the count
 					<li class=""> <a href="adviserinfo.php">Advisers</a> </li>
 					<li class=""> <a href="memberorg.php">Members</a> </li>
 					<li class=""> <a href="manageactivities.php">Activities</a> </li>
+					<li class="divider"></li>
+					<li class=""><a href="renewal.php">Renew Organization</a></li>
 					</ul>
-				</li>
-			<li class=""> <a href="renewal.php">Renew Organization</a> </li>  
-	<li><a href="newslist.php"> News</a></li>
+				</li>  
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle = "dropdown">Pages<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+					<li><a href="newslist.php"> News</a></li>
+					<li><a href="about.php"> About</a></li>
+					</ul>
+				</li>  
 	<li><a href="report.php"> Reports</a></li>
 	<li><a href="logout.php"> Logout</a></li>
 		</ul>
